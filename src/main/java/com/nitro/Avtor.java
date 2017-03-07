@@ -1,8 +1,8 @@
 package com.nitro;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Avtor {
@@ -11,8 +11,8 @@ public class Avtor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToMany(mappedBy = "avtor", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<Book> books;
+    @OneToMany( cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Set<Book> books;
 
     private String name;
     private String secondName;
@@ -33,11 +33,11 @@ public class Avtor {
         this.id = id;
     }
 
-    public List<Book> getBooks() {
+    public Set<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(List<Book> books) {
+    public void setBooks(Set<Book> books) {
 
         this.books = books;
     }
@@ -59,12 +59,13 @@ public class Avtor {
     }
 
     public String toString(){
-        return "avtor [ "+getName()+" "+getSecondName()+" book: "+getBooks();
+        return "avtor [ "+getName()+" "+getSecondName()+" ]";
     }
     public void addBook(Book book){
-        if (books == null) books=new ArrayList<Book>();
+        if (books == null) books=new HashSet<Book>();
         books.add(book);
-
     }
+
+
 
 }

@@ -11,7 +11,7 @@ public class Book {
 
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     Avtor avtor;
 
     public Book(String name) {
@@ -43,5 +43,8 @@ public class Book {
 
     public void setAvtor(Avtor avtor) {
         this.avtor = avtor;
+    }
+    public String toString(){
+        return "book: "+getName();
     }
 }
